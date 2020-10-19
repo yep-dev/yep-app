@@ -1,6 +1,6 @@
-import React, {useEffect, useRef} from 'react';
-import PositionChartComponent from './PositionChart'
-import Chart from 'chart.js'
+import React, { useEffect, useRef } from 'react';
+import Chart from 'chart.js';
+import PositionChartComponent from './PositionChart';
 
 interface Props {
   data: any | null
@@ -12,16 +12,16 @@ const datasetDefaults = {
   pointRadius: 2,
   borderColor: 'red',
   borderWidth: 1,
-  lineTension: 0
-}
+  lineTension: 0,
+};
 
-const PositionChart = ({data}: Props) => {
-  const chartRef = useRef<HTMLCanvasElement>(null)
-  let chart: any = null
+const PositionChart = ({ data }: Props) => {
+  const chartRef = useRef<HTMLCanvasElement>(null);
+  let chart: any = null;
 
   useEffect(() => {
     if (chartRef.current && data) {
-      console.log(data)
+      console.log(data);
       chart = new Chart(chartRef.current, {
         type: 'line',
         data: {
@@ -29,16 +29,16 @@ const PositionChart = ({data}: Props) => {
           datasets: [
             {
               ...datasetDefaults,
-              label: "Processed Positions",
+              label: 'Processed Positions',
               data: data.processedPositions,
               borderColor: 'white',
             },
             {
               ...datasetDefaults,
-              label: "Original Positions",
-              data: data.originalPositions
+              label: 'Original Positions',
+              data: data.originalPositions,
             },
-          ]
+          ],
         },
         options: {
           responsive: true,
@@ -48,29 +48,29 @@ const PositionChart = ({data}: Props) => {
             yAxes: [
               {
                 gridLines: {
-                  color: "#343434",
-                  zeroLineColor: "#343434",
-                  zeroLineWidth: 1
-                }
-              }
-            ]
-          }
+                  color: '#343434',
+                  zeroLineColor: '#343434',
+                  zeroLineWidth: 1,
+                },
+              },
+            ],
+          },
         },
-      })
+      });
     }
-  }, [data])
+  }, [data]);
 
   // useEffect(() => {
   //   if (data) {
-  //     chart.data.datasets[0].data = data 
-  //   } 
+  //     chart.data.datasets[0].data = data
+  //   }
   // }, [data])
   //
-  const props = {chartRef}
+  const props = { chartRef };
 
   return (
     <PositionChartComponent {...props} />
   );
-}
+};
 
-export default PositionChart
+export default PositionChart;

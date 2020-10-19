@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface Props {
   chartRef: any;
@@ -7,12 +7,12 @@ interface Props {
 
 const Container = styled.div`
   height: 300px;
-`
+`;
 
-const PositionChartComponent = ({chartRef}: Props) => (
+const PositionChartComponent = ({ chartRef }: Props) => (
   <Container>
     <canvas ref={chartRef} />
   </Container>
-)
+);
 
-export default PositionChartComponent
+export default PositionChartComponent;

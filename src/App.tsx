@@ -1,17 +1,19 @@
 import React from 'react';
-import Layout from "./layout";
-import "antd/dist/antd.dark.less"
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-} from "react-router-dom";
+} from 'react-router-dom';
+import Layout from './layout';
+import 'antd/dist/antd.dark.less';
 
-import Dashboard from "./pages/dashboard";
-import Thrust from "./pages/machine/thrust";
-
+import Dashboard from './pages/dashboard';
+import Thrust from './pages/machine/thrust';
+import useHandleStatusWebsocket from './hooks/websocketHandlers';
 
 function App() {
+  useHandleStatusWebsocket();
+
   return (
     <Router>
       <Layout>

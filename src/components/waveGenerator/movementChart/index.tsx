@@ -1,6 +1,6 @@
-import React, {useEffect, useRef} from 'react';
-import MovementChartComponent from './MovementChart'
-import Chart from 'chart.js'
+import React, { useEffect, useRef } from 'react';
+import Chart from 'chart.js';
+import MovementChartComponent from './MovementChart';
 
 interface Props {
   data: any | null
@@ -12,16 +12,16 @@ const datasetDefaults = {
   pointRadius: 2,
   borderColor: 'red',
   borderWidth: 1,
-  lineTension: 0
-}
+  lineTension: 0,
+};
 
-const MovementChart = ({data}: Props) => {
-  const chartRef = useRef<HTMLCanvasElement>(null)
-  let chart: any = null
+const MovementChart = ({ data }: Props) => {
+  const chartRef = useRef<HTMLCanvasElement>(null);
+  let chart: any = null;
 
   useEffect(() => {
     if (chartRef.current && data) {
-      console.log(data)
+      console.log(data);
       chart = new Chart(chartRef.current, {
         type: 'line',
         data: {
@@ -29,11 +29,11 @@ const MovementChart = ({data}: Props) => {
           datasets: [
             {
               ...datasetDefaults,
-              label: "Movements",
+              label: 'Movements',
               data: data.movements,
               borderColor: 'white',
             },
-          ]
+          ],
         },
         options: {
           responsive: true,
@@ -42,28 +42,28 @@ const MovementChart = ({data}: Props) => {
             xAxes: [],
             yAxes: [{
               gridLines: {
-                color: "#343434",
-                zeroLineColor: "#676767",
-                zeroLineWidth: 3
-              }
-            }]
+                color: '#343434',
+                zeroLineColor: '#676767',
+                zeroLineWidth: 3,
+              },
+            }],
           },
         },
-      })
+      });
     }
-  }, [data])
+  }, [data]);
 
   // useEffect(() => {
   //   if (data) {
-  //     chart.data.datasets[0].data = data 
-  //   } 
+  //     chart.data.datasets[0].data = data
+  //   }
   // }, [data])
   //
-  const props = {chartRef}
+  const props = { chartRef };
 
   return (
     <MovementChartComponent {...props} />
   );
-}
+};
 
-export default MovementChart
+export default MovementChart;

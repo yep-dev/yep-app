@@ -1,4 +1,6 @@
-import {useCallback, useState} from "react";
+import { useCallback, useMemo, useState } from 'react';
+import { bindActionCreators } from 'redux';
+import { useDispatch } from 'react-redux';
 
 export const useApi = (fetcher: any) => {
   const [data, setData] = useState(null);
@@ -13,12 +15,21 @@ export const useApi = (fetcher: any) => {
       setError('');
       return response.data;
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
       setError(e);
+      return e;
     } finally {
       setLoading(false);
     }
   }, [fetcher]);
 
-  return {callApi, data, loading, error};
-}
+  return {
+    callApi, data, loading, error,
+  };
+};
+
+export const useAction = (actions: any) => {
+  const dispatch = useDispatch();
+  return useMemo(() => bindActionCreators(actions, dispatch), [actions, dispatch]);
+};

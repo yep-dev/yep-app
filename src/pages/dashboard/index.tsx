@@ -1,13 +1,12 @@
 import React from 'react';
-import DashboardComponent from "./Dashboard";
+import DashboardComponent from './Dashboard';
 
 const Dashboard = () => {
-
-  const props = {}
+  const props = {};
 
   return (
     <DashboardComponent {...props} />
   );
-}
+};
 
-export default Dashboard
+export default Dashboard;

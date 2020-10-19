@@ -2,7 +2,9 @@
 /// <reference types="react" />
 /// <reference types="react-dom" />
 
+// eslint-disable-next-line no-unused-vars
 declare namespace NodeJS {
+  // eslint-disable-next-line no-unused-vars
   interface ProcessEnv {
     readonly NODE_ENV: 'development' | 'production' | 'test';
     readonly PUBLIC_URL: string;

@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const DashboardComponent = () => (
   <div>asd</div>
-)
+);
 
-export default DashboardComponent
+export default DashboardComponent;

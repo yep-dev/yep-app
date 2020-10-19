@@ -1,13 +1,12 @@
 import React from 'react';
-import ThrustComponent from './Thrust'
+import ThrustComponent from './Thrust';
 
 const Thrust = () => {
-
-  const props = {}
+  const props = {};
 
   return (
     <ThrustComponent {...props} />
   );
-}
+};
 
-export default Thrust
+export default Thrust;
