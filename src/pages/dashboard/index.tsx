@@ -4,9 +4,7 @@ import DashboardComponent from './Dashboard';
 const Dashboard = () => {
   const props = {};
 
-  return (
-    <DashboardComponent {...props} />
-  );
+  return <DashboardComponent {...props} />;
 };
 
 export default Dashboard;

@@ -5,8 +5,8 @@ interface DeviceStatus {
 }
 
 export interface StatusState {
-  machine: DeviceStatus | null
-  arm: DeviceStatus | null
+  machine: DeviceStatus | null;
+  arm: DeviceStatus | null;
 }
 
 const initialState: StatusState = {
@@ -18,15 +18,17 @@ const slice = createSlice({
   name: 'status',
   initialState,
   reducers: {
-    setStatus: (state, { payload }: PayloadAction<{ device: string, type: string }>) => ({
+    setStatus: (
+      state,
+      { payload }: PayloadAction<{ device: string; type: string }>
+    ) => ({
       ...state,
       [payload.device]: payload.type,
     }),
   },
 });
 
-const createStatusSelectors = () => {
-};
+const createStatusSelectors = () => {};
 
 const status = {
   selectors: createStatusSelectors(),

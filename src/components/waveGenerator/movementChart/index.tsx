@@ -3,7 +3,7 @@ import Chart from 'chart.js';
 import MovementChartComponent from './MovementChart';
 
 interface Props {
-  data: any | null
+  data: any | null;
 }
 
 const datasetDefaults = {
@@ -40,13 +40,15 @@ const MovementChart = ({ data }: Props) => {
           maintainAspectRatio: false,
           scales: {
             xAxes: [],
-            yAxes: [{
-              gridLines: {
-                color: '#343434',
-                zeroLineColor: '#676767',
-                zeroLineWidth: 3,
+            yAxes: [
+              {
+                gridLines: {
+                  color: '#343434',
+                  zeroLineColor: '#676767',
+                  zeroLineWidth: 3,
+                },
               },
-            }],
+            ],
           },
         },
       });
@@ -61,9 +63,7 @@ const MovementChart = ({ data }: Props) => {
   //
   const props = { chartRef };
 
-  return (
-    <MovementChartComponent {...props} />
-  );
+  return <MovementChartComponent {...props} />;
 };
 
 export default MovementChart;

@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import status, { StatusState } from './status';
 
 export interface RootState {
-  status: StatusState
+  status: StatusState;
 }
 
 const slices = {} as any;

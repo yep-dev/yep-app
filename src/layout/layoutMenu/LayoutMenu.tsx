@@ -20,13 +20,16 @@ const LayoutMenu = () => (
     defaultOpenKeys={['machine', 'arm']}
   >
     <Menu.Item key="dashboard">Dashboard</Menu.Item>
-    <SubMenu
-      key="machine"
-      title="Machine"
-    >
-      <Item key="machine1"><Link to="/machine/overview">Overview</Link></Item>
-      <Item key="machine2"><Link to="/machine/thrust">Thrust</Link></Item>
-      <Item key="machine3"><Link to="/machine/rotation">Rotation</Link></Item>
+    <SubMenu key="machine" title="Machine">
+      <Item key="machine1">
+        <Link to="/machine/overview">Overview</Link>
+      </Item>
+      <Item key="machine2">
+        <Link to="/machine/thrust">Thrust</Link>
+      </Item>
+      <Item key="machine3">
+        <Link to="/machine/rotation">Rotation</Link>
+      </Item>
     </SubMenu>
     <SubMenu key="arm" title="Arm">
       <Item key="arm1">Overview</Item>

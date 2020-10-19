@@ -11,9 +11,7 @@ const Header = () => {
     handleStop: stopCommand.callApi,
     handleCalibrate: calibrateCommand.callApi,
   };
-  return (
-    <HeaderComponent {...props} />
-  );
+  return <HeaderComponent {...props} />;
 };
 
 export default Header;

@@ -3,7 +3,7 @@ import Chart from 'chart.js';
 import PositionChartComponent from './PositionChart';
 
 interface Props {
-  data: any | null
+  data: any | null;
 }
 
 const datasetDefaults = {
@@ -68,9 +68,7 @@ const PositionChart = ({ data }: Props) => {
   //
   const props = { chartRef };
 
-  return (
-    <PositionChartComponent {...props} />
-  );
+  return <PositionChartComponent {...props} />;
 };
 
 export default PositionChart;

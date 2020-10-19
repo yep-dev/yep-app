@@ -22,9 +22,7 @@ const LayoutComponent = ({ children }) => (
     <LayoutMenu />
     <Main>
       <Header />
-      <Content>
-        {children}
-      </Content>
+      <Content>{children}</Content>
     </Main>
   </Container>
 );

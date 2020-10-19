@@ -4,9 +4,7 @@ import ThrustComponent from './Thrust';
 const Thrust = () => {
   const props = {};
 
-  return (
-    <ThrustComponent {...props} />
-  );
+  return <ThrustComponent {...props} />;
 };
 
 export default Thrust;

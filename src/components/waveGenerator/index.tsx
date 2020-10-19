@@ -13,9 +13,7 @@ const WaveGenerator = () => {
 
   const props = { data, setType };
 
-  return (
-    <WaveGeneratorComponent {...props} />
-  );
+  return <WaveGeneratorComponent {...props} />;
 };
 
 export default WaveGenerator;

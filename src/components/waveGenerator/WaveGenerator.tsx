@@ -6,7 +6,7 @@ import MovementChart from './movementChart';
 const { Option } = Select;
 
 interface Props {
-  data: {}[] | null
+  data: {}[] | null;
   // eslint-disable-next-line no-unused-vars
   setType(type: string): void;
 }
@@ -15,7 +15,6 @@ const WaveGeneratorComponent = ({ data, setType }: Props) => (
   <div>
     <div>duration</div>
     <InputNumber min={1} defaultValue={10} onChange={console.log} />
-    {' '}
     seconds
     <div>type</div>
     <Select defaultValue="sine" style={{ width: 120 }} onChange={setType}>
