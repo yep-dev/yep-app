@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../slices';
 
 interface DeviceStatus {
   type: string;
@@ -28,7 +29,12 @@ const slice = createSlice({
   },
 });
 
-const createStatusSelectors = () => {};
+const createStatusSelectors = () => {
+  const status = (state: RootState) => state.status;
+  return {
+    status,
+  };
+};
 
 const status = {
   selectors: createStatusSelectors(),

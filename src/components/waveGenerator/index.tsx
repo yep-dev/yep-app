@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import WaveGeneratorComponent from './WaveGenerator';
 import { useApi } from '../../hooks';
-import { postWave } from '../../data/endpoints';
+import { postGetWave, postRunWave } from '../../data/endpoints';
 
 const WaveGenerator = () => {
-  const { callApi, data } = useApi(postWave);
+  const postWaveApi = useApi(postGetWave);
+  const runLoopWave = useApi(postRunWave);
   const [type, setType] = useState('sine');
 
   useEffect(() => {
-    callApi({ type });
-  }, [callApi, type]);
+    postWaveApi.callApi({ type });
+  }, [postWaveApi.callApi, type]);
 
-  const props = { data, setType };
+  const handleLoopWave = () => {
+    runLoopWave.callApi({ type });
+  };
+
+  const props = { data: postWaveApi.data, setType, handleLoopWave };
 
   return <WaveGeneratorComponent {...props} />;
 };

@@ -1,6 +1,8 @@
 import React from 'react';
-import { Button } from 'antd';
+import { Button, Tag } from 'antd';
 import styled from 'styled-components';
+import { propOr } from 'ramda';
+import { StatusState } from '../../data/status';
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -31,17 +33,49 @@ const Title = styled.h1`
   font-size: 24px;
 `;
 
+const Status = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+`;
+
+const StatusTag = styled(Tag)`
+  margin: 4px auto 0;
+`;
+
 interface props {
   handleStop(): void;
   handleCalibrate(): void;
+  statusData: StatusState;
 }
 
-const HeaderComponent = ({ handleStop, handleCalibrate }: props) => (
+const statusToColorMap = {
+  waiting: 'success',
+  running: 'processing',
+  error: 'error',
+  warning: 'warning',
+};
+
+const HeaderComponent = ({
+  handleStop,
+  handleCalibrate,
+  statusData,
+}: props) => (
   <>
     <Container>
       <Title>asd</Title>
       <Section>
-        <div>Machine</div>
+        {Object.entries(statusData).map(
+          ([device, status]: [string, string]) => (
+            <Status key={device}>
+              <div>{device}</div>
+              <StatusTag color={propOr('default', status, statusToColorMap)}>
+                {status || 'disconnected'}
+              </StatusTag>
+            </Status>
+          )
+        )}
       </Section>
       <Section>
         <Button size="large" onClick={handleCalibrate}>
