@@ -16,28 +16,19 @@ const datasetDefaults = {
 };
 
 const MovementChart = ({ data }: Props) => {
-  const chartRef = useRef<HTMLCanvasElement>(null);
-  let chart: any = null;
+  const chartElement = useRef<HTMLCanvasElement>(null);
+  const chart = useRef<any>(null);
 
   useEffect(() => {
-    if (chartRef.current && data) {
-      console.log(data);
-      chart = new Chart(chartRef.current, {
+    if (chartElement.current) {
+      chart.current = new Chart(chartElement.current, {
         type: 'line',
-        data: {
-          labels: data.movements.map((_: any, i: number) => i),
-          datasets: [
-            {
-              ...datasetDefaults,
-              label: 'Movements',
-              data: data.movements,
-              borderColor: 'white',
-            },
-          ],
-        },
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          animation: {
+            duration: 0,
+          },
           scales: {
             xAxes: [],
             yAxes: [
@@ -53,15 +44,26 @@ const MovementChart = ({ data }: Props) => {
         },
       });
     }
-  }, [data]);
+  }, []);
 
-  // useEffect(() => {
-  //   if (data) {
-  //     chart.data.datasets[0].data = data
-  //   }
-  // }, [data])
+  useEffect(() => {
+    if (data && chart.current) {
+      chart.current.data = {
+        labels: data.movements.map((_: any, i: number) => i),
+        datasets: [
+          {
+            ...datasetDefaults,
+            label: 'Movements',
+            data: data.movements,
+            borderColor: 'white',
+          },
+        ],
+      };
+      chart.current.update();
+    }
+  }, [data]);
   //
-  const props = { chartRef };
+  const props = { chartRef: chartElement };
 
   return <MovementChartComponent {...props} />;
 };

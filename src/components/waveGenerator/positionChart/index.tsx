@@ -16,33 +16,19 @@ const datasetDefaults = {
 };
 
 const PositionChart = ({ data }: Props) => {
-  const chartRef = useRef<HTMLCanvasElement>(null);
-  let chart: any = null;
+  const chartElement = useRef<HTMLCanvasElement>(null);
+  const chart = useRef<any>(null);
 
   useEffect(() => {
-    if (chartRef.current && data) {
-      console.log(data);
-      chart = new Chart(chartRef.current, {
+    if (chartElement.current) {
+      chart.current = new Chart(chartElement.current, {
         type: 'line',
-        data: {
-          labels: data.processedPositions.map((_: any, i: number) => i),
-          datasets: [
-            {
-              ...datasetDefaults,
-              label: 'Processed Positions',
-              data: data.processedPositions,
-              borderColor: 'white',
-            },
-            {
-              ...datasetDefaults,
-              label: 'Original Positions',
-              data: data.originalPositions,
-            },
-          ],
-        },
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          animation: {
+            duration: 0,
+          },
           scales: {
             xAxes: [],
             yAxes: [
@@ -52,21 +38,41 @@ const PositionChart = ({ data }: Props) => {
                   zeroLineColor: '#343434',
                   zeroLineWidth: 1,
                 },
+                ticks: {
+                  min: -1,
+                  max: 1,
+                },
               },
             ],
           },
         },
       });
     }
+  }, []);
+
+  useEffect(() => {
+    if (data && chart.current) {
+      chart.current.data = {
+        labels: data.processedPositions.map((_: any, i: number) => i),
+        datasets: [
+          {
+            ...datasetDefaults,
+            label: 'Processed Positions',
+            data: data.processedPositions,
+            borderColor: 'white',
+          },
+          {
+            ...datasetDefaults,
+            label: 'Original Positions',
+            data: data.originalPositions,
+          },
+        ],
+      };
+      chart.current.update();
+    }
   }, [data]);
 
-  // useEffect(() => {
-  //   if (data) {
-  //     chart.data.datasets[0].data = data
-  //   }
-  // }, [data])
-  //
-  const props = { chartRef };
+  const props = { chartRef: chartElement };
 
   return <PositionChartComponent {...props} />;
 };

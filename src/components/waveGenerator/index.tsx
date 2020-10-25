@@ -7,16 +7,23 @@ const WaveGenerator = () => {
   const postWaveApi = useApi(postGetWave);
   const runLoopWave = useApi(postRunWave);
   const [type, setType] = useState('sine');
+  const [duration, setDuration] = useState(5);
 
   useEffect(() => {
-    postWaveApi.callApi({ type });
-  }, [postWaveApi.callApi, type]);
+    postWaveApi.callApi({ type, duration });
+  }, [postWaveApi.callApi, type, duration]);
 
   const handleLoopWave = () => {
-    runLoopWave.callApi({ type });
+    runLoopWave.callApi({ type, duration });
   };
 
-  const props = { data: postWaveApi.data, setType, handleLoopWave };
+  console.log(postWaveApi.data);
+  const props = {
+    data: postWaveApi.data,
+    setType,
+    handleLoopWave,
+    setDuration,
+  };
 
   return <WaveGeneratorComponent {...props} />;
 };
