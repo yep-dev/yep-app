@@ -19,6 +19,7 @@ const WaveGeneratorComponent = ({
   handleLoopWave,
 }: Props) => (
   <div>
+    <p>Wave generator</p>
     <div>duration</div>
     <InputNumber min={0.2} defaultValue={5} step={0.1} onChange={setDuration} />
     seconds
