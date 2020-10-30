@@ -1,10 +1,36 @@
 import axios from 'axios';
 
-export const postGetWave = (data: any) =>
-  axios.post('http://localhost/api/wave/get', data);
+const apiUrl = 'http://localhost/api/';
 
-export const postRunWave = (data: any) =>
-  axios.post('http://localhost/api/wave/run', data);
+const postGetWave = (data: any) => axios.post(`${apiUrl}wave/get`, data);
 
-export const postCommand = (command: string) => () =>
-  axios.post(`http://localhost/api/commands/${command}`);
+const postRunWave = (data: any) => axios.post(`${apiUrl}wave/run`, data);
+
+const postCommand = (command: string) => () =>
+  axios.post(`${apiUrl}commands/${command}`);
+
+const getSettings = ({ model, id }: { model: string; id: number }) =>
+  axios.get(`${apiUrl}settings/${model}/${id}`);
+
+const putSettings = ({
+  model,
+  id,
+  data,
+}: {
+  model: string;
+  id: number;
+  data: any;
+}) => axios.put(`${apiUrl}settings/${model}/${id}`, data);
+
+const resetSettings = () => axios.delete(`${apiUrl}settings`);
+
+export default {
+  postGetWave,
+  postRunWave,
+
+  postCommand,
+
+  getSettings,
+  putSettings,
+  resetSettings,
+};

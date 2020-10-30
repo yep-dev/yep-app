@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { useDispatch } from 'react-redux';
 
 export const useApi = (fetcher: any) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 

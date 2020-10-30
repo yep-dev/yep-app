@@ -45,6 +45,7 @@ const StatusTag = styled(Tag)`
 `;
 
 interface props {
+  title: string;
   handleStop(): void;
   handleCalibrate(): void;
   statusData: StatusState;
@@ -58,13 +59,14 @@ const statusToColorMap = {
 };
 
 const HeaderComponent = ({
+  title,
   handleStop,
   handleCalibrate,
   statusData,
 }: props) => (
   <>
     <Container>
-      <Title>asd</Title>
+      <Title>{title}</Title>
       <Section>
         {Object.entries(statusData).map(
           ([device, status]: [string, string]) => (

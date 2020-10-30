@@ -21,19 +21,25 @@ const LayoutMenu = () => (
   >
     <Menu.Item key="dashboard">Dashboard</Menu.Item>
     <SubMenu key="machine" title="Machine">
-      <Item key="machine1">
+      <Item key="machine0">
         <Link to="/machine/overview">Overview</Link>
       </Item>
-      <Item key="machine2">
+      <Item key="machine1">
         <Link to="/machine/thrust">Thrust</Link>
       </Item>
-      <Item key="machine3">
+      <Item key="machine2">
         <Link to="/machine/rotation">Rotation</Link>
+      </Item>
+      <Item key="machine3">
+        <Link to="/machine/settings/thrust">Thrust Settings</Link>
       </Item>
     </SubMenu>
     <SubMenu key="arm" title="Arm">
       <Item key="arm1">Overview</Item>
     </SubMenu>
+    <Item key="general-settings">
+      <Link to="/general-settings">General Settings</Link>
+    </Item>
   </FixedMenu>
 );
 
