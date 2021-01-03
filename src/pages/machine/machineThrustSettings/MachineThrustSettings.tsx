@@ -31,18 +31,18 @@ const MachineThrustSettingsComponent = () => (
       <h2>Thrust specific settings</h2>
       <NumberSetting
         name="stroke_length"
-        label="Max length of stroke"
+        label="User max stroke length"
         addonAfter="mm"
       />
       <NumberSetting
         name="stroke_limit"
-        label="Length of stroke limit"
+        label="Machine stroke limit"
         addonAfter="mm"
       />
       <NumberSetting
         name="padding_steps"
         label="Padding from limit switches"
-        addonAfter="full steps"
+        addonAfter="mm"
       />
     </Section>
     <Section>
@@ -51,6 +51,12 @@ const MachineThrustSettingsComponent = () => (
         name="max_steps"
         label="Max steps until end of stroke"
         addonAfter="full steps"
+        disabled
+      />
+      <NumberSetting
+        name="steps_per_mm"
+        label="Number of steps per mm"
+        addonAfter="steps/mm"
         disabled
       />
     </Section>
