@@ -1,6 +1,21 @@
 import React, { useEffect, useRef } from 'react';
-import Chart from 'chart.js';
+import {
+  Chart,
+  LinearScale,
+  LineController,
+  LineElement,
+  CategoryScale,
+  PointElement,
+} from 'chart.js';
 import PositionChartComponent from './PositionChart';
+
+Chart.register(
+  LineController,
+  LineElement,
+  LinearScale,
+  CategoryScale,
+  PointElement
+);
 
 interface Props {
   data: any | null;
@@ -23,27 +38,23 @@ const PositionChart = ({ data }: Props) => {
     if (chartElement.current) {
       chart.current = new Chart(chartElement.current, {
         type: 'line',
+        data: {
+          datasets: [],
+          labels: [],
+        },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          animation: {
-            duration: 0,
-          },
           scales: {
-            xAxes: [],
-            yAxes: [
-              {
-                gridLines: {
-                  color: '#343434',
-                  zeroLineColor: '#343434',
-                  zeroLineWidth: 1,
-                },
-                ticks: {
-                  min: -1,
-                  max: 1,
-                },
+            y: {
+              min: -1,
+              max: 1,
+              gridLines: {
+                color: '#343434',
+                // zeroLineColor: '#343434',
+                // zeroLineWidth: 1,
               },
-            ],
+            },
           },
         },
       });

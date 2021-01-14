@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, InputNumber, Select } from 'antd';
 import PositionChart from './positionChart';
-import MovementChart from './movementChart';
 
 const { Option } = Select;
 
@@ -29,11 +28,8 @@ const WaveGeneratorComponent = ({
       <Option value="square">Square</Option>
     </Select>
     <div>postprocessing</div>
-    <Button type="primary" onClick={handleLoopWave}>
-      Run wave in loop
-    </Button>
+    <Button onClick={handleLoopWave}>Run wave in loop</Button>
     <PositionChart data={data} />
-    <MovementChart data={data} />
   </div>
 );
 

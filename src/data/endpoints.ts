@@ -22,7 +22,17 @@ const putSettings = ({
   data: any;
 }) => axios.put(`${apiUrl}settings/${model}/${id}`, data);
 
-const resetSettings = () => axios.delete(`${apiUrl}settings`);
+const resetSettings = () => axios.post(`${apiUrl}setup/initialize/`);
+
+const postSettingsCurve = ({
+  model,
+  id,
+  data,
+}: {
+  model: string;
+  id: number;
+  data: any;
+}) => axios.post(`${apiUrl}curve/`, { data });
 
 export default {
   postGetWave,
@@ -33,4 +43,6 @@ export default {
   getSettings,
   putSettings,
   resetSettings,
+
+  postSettingsCurve,
 };

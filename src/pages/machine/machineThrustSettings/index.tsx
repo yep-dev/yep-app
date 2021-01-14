@@ -12,13 +12,14 @@ const MachineThrustSettings = () => {
   const handleSubmit = (values: any) => {
     putSettings.callApi({
       model: 'machine-thrust',
-      id: 1,
-      data: omit(['max_steps'], values),
+      // eslint-disable-next-line no-underscore-dangle
+      id: getSettings.data.id,
+      data: omit(['max_steps', 'id'], values),
     });
   };
 
   useEffect(() => {
-    getSettings.callApi({ model: 'machine-thrust', id: 1 });
+    getSettings.callApi({ model: 'machine-thrust', id: 'default' });
   }, []);
 
   const props = {};

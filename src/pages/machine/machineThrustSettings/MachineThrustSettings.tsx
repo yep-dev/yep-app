@@ -4,6 +4,7 @@ import { Form } from 'formik';
 import styled from 'styled-components';
 import NumberSetting from '../../../components/numberSetting';
 import StringSetting from '../../../components/stringSetting';
+import CurveChart from '../../../components/curveChart';
 
 const Section = styled.div`
   margin-bottom: 32px;
@@ -13,6 +14,9 @@ const MachineThrustSettingsComponent = () => (
   <Form>
     <Section>
       <StringSetting name="name" label="Name" />
+    </Section>
+    <Section>
+      <CurveChart />
     </Section>
     <Section>
       <h2>Stepper motor settings</h2>
@@ -60,9 +64,7 @@ const MachineThrustSettingsComponent = () => (
         disabled
       />
     </Section>
-    <Button type="primary" htmlType="submit">
-      Save
-    </Button>
+    <Button htmlType="submit">Save</Button>
   </Form>
 );
 

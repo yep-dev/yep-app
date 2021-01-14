@@ -84,11 +84,11 @@ const HeaderComponent = ({
           CALIBRATE
         </Button>
         {statusData.machine?.type === 'waiting' ? (
-          <Button type="primary" size="large" onClick={handleStop}>
+          <Button size="large" onClick={handleStop}>
             RESET
           </Button>
         ) : (
-          <Button type="primary" size="large" danger onClick={handleStop}>
+          <Button size="large" danger onClick={handleStop}>
             STOP
           </Button>
         )}
