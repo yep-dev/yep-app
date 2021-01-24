@@ -20,6 +20,4 @@ const reducers = Object.entries(slices)
     return result;
   }, {});
 
-console.log(reducers);
-
 export const rootReducer = combineReducers(reducers);

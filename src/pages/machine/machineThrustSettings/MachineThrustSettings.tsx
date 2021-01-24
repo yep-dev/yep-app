@@ -1,25 +1,35 @@
 import React from 'react';
 import { Button } from 'antd';
-import { Form } from 'formik';
 import styled from 'styled-components';
+import { Form } from 'formik';
 import NumberSetting from '../../../components/numberSetting';
 import StringSetting from '../../../components/stringSetting';
-import CurveChart from '../../../components/curveChart';
+import ChartSetting from '../../../components/chartSetting';
 
 const Section = styled.div`
   margin-bottom: 32px;
 `;
 
 const MachineThrustSettingsComponent = () => (
-  <Form>
+  <Form className="ant-form ant-form-vertical">
     <Section>
       <StringSetting name="name" label="Name" />
     </Section>
     <Section>
-      <CurveChart />
+      <h2>Force response</h2>
+      <NumberSetting
+        name="tick_stroke_limit"
+        label="Stroke in tick limit"
+        addonAfter="mm"
+      />
+      <ChartSetting
+        name="stroke_force_chart"
+        label="Max stroke for the given force"
+        interval={100}
+      />
     </Section>
     <Section>
-      <h2>Stepper motor settings</h2>
+      <h2>Stepper motor</h2>
       <NumberSetting
         name="microsteps_per_rev"
         label="Microsteps per motor revolution"
@@ -32,19 +42,19 @@ const MachineThrustSettingsComponent = () => (
       />
     </Section>
     <Section>
-      <h2>Thrust specific settings</h2>
-      <NumberSetting
-        name="stroke_length"
-        label="User max stroke length"
-        addonAfter="mm"
-      />
+      <h2>Thrust</h2>
       <NumberSetting
         name="stroke_limit"
-        label="Machine stroke limit"
+        label="User-set max stroke limit"
         addonAfter="mm"
       />
       <NumberSetting
-        name="padding_steps"
+        name="max_stroke"
+        label="Machine max stroke"
+        addonAfter="mm"
+      />
+      <NumberSetting
+        name="padding_mm"
         label="Padding from limit switches"
         addonAfter="mm"
       />

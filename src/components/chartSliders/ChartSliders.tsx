@@ -27,21 +27,15 @@ const Sliders = styled.div`
 
 interface Props {
   margin: string;
-  number: number;
   dataPoints: number[];
   handleSlide: any;
 }
 
-const ChartSlidersComponent = ({
-  margin,
-  number,
-  dataPoints,
-  handleSlide,
-}: Props) => (
+const ChartSlidersComponent = ({ margin, dataPoints, handleSlide }: Props) => (
   <Absolute>
     <Container margin={margin}>
       <Sliders>
-        {Array.from(Array(number), (_, i) => (
+        {Array.from({ length: dataPoints.length }, (_, i) => (
           <Slider
             key={i}
             vertical

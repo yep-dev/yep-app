@@ -6,8 +6,7 @@ const postGetWave = (data: any) => axios.post(`${apiUrl}wave/get`, data);
 
 const postRunWave = (data: any) => axios.post(`${apiUrl}wave/run`, data);
 
-const postCommand = (command: string) => () =>
-  axios.post(`${apiUrl}commands/${command}`);
+const postCommand = (data: any) => axios.post(`${apiUrl}commands/run/`, data);
 
 const getSettings = ({ model, id }: { model: string; id: number }) =>
   axios.get(`${apiUrl}settings/${model}/${id}`);

@@ -1,20 +1,24 @@
 import React from 'react';
 import * as R from 'ramda';
+import { useField } from 'formik';
 import ChartSlidersComponent from './ChartSliders';
 
 interface Props {
   margin: string;
-  number: number;
-  dataPoints: number[];
-  setDataPoints: any;
+  fieldName: string;
 }
 
-const ChartSliders = ({ margin, number, dataPoints, setDataPoints }: Props) => {
+const ChartSliders = ({ margin, fieldName }: Props) => {
+  const [field, _, { setValue }] = useField(fieldName);
   const handleSlide = (index: number) => (value: number) => {
-    setDataPoints(R.update(index, value));
+    setValue(R.update(index, value, field.value));
   };
 
-  const props = { margin, number, dataPoints, handleSlide };
+  const props = {
+    margin,
+    dataPoints: field.value,
+    handleSlide,
+  };
   return <ChartSlidersComponent {...props} />;
 };
 

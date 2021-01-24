@@ -6,7 +6,7 @@ const useHandleStatusWebsocket = () => {
   const setStatus = useAction(status.actions.setStatus);
 
   const handleMessage = (message: any) => {
-    console.log(message);
+    console.log('Message: ', message);
     const messages = JSON.parse(message.data);
     for (const { device, type } of messages) {
       setStatus({ device, type });

@@ -44,9 +44,20 @@ const StatusTag = styled(Tag)`
   margin: 4px auto 0;
 `;
 
+const EndButton = styled(Button)`
+  color: #f9a800;
+  border-color: #f9a800;
+`;
+
+const StopButton = styled(Button)`
+  color: #f32013;
+  border-color: #f32013;
+`;
+
 interface props {
   title: string;
   handleStop(): void;
+  hadleEnd(): void;
   handleCalibrate(): void;
   statusData: StatusState;
 }
@@ -61,6 +72,7 @@ const statusToColorMap = {
 const HeaderComponent = ({
   title,
   handleStop,
+  hadleEnd,
   handleCalibrate,
   statusData,
 }: props) => (
@@ -83,15 +95,12 @@ const HeaderComponent = ({
         <Button size="large" onClick={handleCalibrate}>
           CALIBRATE
         </Button>
-        {statusData.machine?.type === 'waiting' ? (
-          <Button size="large" onClick={handleStop}>
-            RESET
-          </Button>
-        ) : (
-          <Button size="large" danger onClick={handleStop}>
-            STOP
-          </Button>
-        )}
+        <EndButton size="large" onClick={hadleEnd}>
+          END
+        </EndButton>
+        <StopButton size="large" onClick={handleStop}>
+          STOP
+        </StopButton>
       </Section>
     </Container>
   </>

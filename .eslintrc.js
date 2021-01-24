@@ -47,6 +47,9 @@ module.exports = {
     'no-restricted-syntax': 0,
     'react/prop-types': [2, { ignore: ['children'] }],
     'no-param-reassign': ['error', { props: false }],
+    '@typescript-eslint/explicit-module-boundary-types': 0,
+    'react/require-default-props': 0,
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_$' }],
   },
   settings: {
     'import/resolver': {

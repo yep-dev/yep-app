@@ -1,23 +1,17 @@
 import React from 'react';
 import { Input } from 'antd';
-import styled from 'styled-components';
 import { FieldInputProps } from 'formik';
+import SettingsField from '../settingsField';
 
 interface Props {
   label: string;
   field: FieldInputProps<string>;
 }
 
-const Container = styled.div`
-  max-width: 300px;
-  margin: 12px 0;
-`;
-
 const NumberSettingComponent = ({ label, field, ...inputProps }: Props) => (
-  <Container>
-    <div>{label}</div>
+  <SettingsField label={label} name={field.name}>
     <Input type="number" {...field} {...inputProps} />
-  </Container>
+  </SettingsField>
 );
 
 export default NumberSettingComponent;

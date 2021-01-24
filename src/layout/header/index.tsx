@@ -9,16 +9,16 @@ import status from '../../data/status';
 import { headerTitles } from '../../routing';
 
 const Header = () => {
-  const stopCommand = useApi(endpoints.postCommand('stop'));
-  const calibrateCommand = useApi(endpoints.postCommand('calibrate'));
+  const postCommand = useApi(endpoints.postCommand);
   const location = useLocation();
   const statusData = useSelector(status.selectors.status);
   const title: string = propOr('', location.pathname, headerTitles);
 
   const props = {
     title,
-    handleStop: stopCommand.callApi,
-    handleCalibrate: calibrateCommand.callApi,
+    handleStop: () => postCommand.callApi({ type: 'stop' }),
+    hadleEnd: () => postCommand.callApi({ type: 'end' }),
+    handleCalibrate: () => postCommand.callApi({ type: 'calibrate' }),
     statusData,
   };
   return <HeaderComponent {...props} />;

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Formik } from 'formik';
-import { omit } from 'ramda';
+import * as R from 'ramda';
 import MachineThrustSettingsComponent from './MachineThrustSettings';
 import { useApi } from '../../../hooks';
 import endpoints from '../../../data/endpoints';
@@ -14,7 +14,7 @@ const MachineThrustSettings = () => {
       model: 'machine-thrust',
       // eslint-disable-next-line no-underscore-dangle
       id: getSettings.data.id,
-      data: omit(['max_steps', 'id'], values),
+      data: R.omit(['max_steps', 'steps_per_mm', 'id'], values),
     });
   };
 
@@ -23,9 +23,12 @@ const MachineThrustSettings = () => {
   }, []);
 
   const props = {};
-
   return getSettings.data ? (
-    <Formik initialValues={getSettings.data} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={R.reject(R.equals(null))(R.omit(['id'], getSettings.data))}
+      onSubmit={handleSubmit}
+      validate={() => ({})}
+    >
       <MachineThrustSettingsComponent {...props} />
     </Formik>
   ) : (

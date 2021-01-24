@@ -1,35 +1,29 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Chart } from 'chart.js';
-import CurveChartComponent from './CurveChart';
+import { useField, useFormikContext } from 'formik';
+import ChartSettingComponent from './ChartSetting';
 import endpoints from '../../data/endpoints';
 import { useApi } from '../../hooks';
 
-const datasetDefaults = {
-  fill: false,
-  backgroundColor: 'red',
-  pointRadius: 2,
-  borderColor: 'red',
-  borderWidth: 1,
-  lineTension: 0,
-};
+interface ChartSettingProps {
+  name: string;
+  label: string;
+  interval: number;
+}
 
-const initialDataPoints = [50, 40, 30, 25, 23, 22, 20, 18, 15, 10, 0];
-const labels = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
-
-const CurveChart = () => {
+const ChartSetting = ({ name, label, interval }: ChartSettingProps) => {
   const chartElement = useRef<HTMLCanvasElement>(null);
   const chart = useRef<any>(null);
-  const [dataPoints, setDataPoints] = useState(initialDataPoints);
+  const [field] = useField(name);
   const postSettingsCurve = useApi(endpoints.postSettingsCurve);
 
   useEffect(() => {
-    console.log('DUPA', dataPoints);
     postSettingsCurve.callApi({
       model: 'machine-thrust',
       id: 'default',
-      data: dataPoints,
+      data: field.value,
     });
-  }, [dataPoints]);
+  }, [field.value]);
 
   useEffect(() => {
     if (postSettingsCurve.data) {
@@ -48,10 +42,13 @@ const CurveChart = () => {
             {
               label: 'acceleration',
               borderColor: '#fff',
-              data: dataPoints,
+              data: field.value,
             },
           ],
-          labels,
+          labels: Array.from(
+            { length: field.value.length },
+            (_, i) => i * interval
+          ),
         },
         options: {
           responsive: true,
@@ -78,8 +75,6 @@ const CurveChart = () => {
               max: 100,
               gridLines: {
                 color: '#343434',
-                // zeroLineColor: '#343434',
-                // zeroLineWidth: 1,
               },
             },
           },
@@ -88,31 +83,13 @@ const CurveChart = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (data && chart.current) {
-  //     chart.current.data = {
-  //       labels: data.processedPositions.map((_: any, i: number) => i),
-  //       datasets: [
-  //         {
-  //           ...datasetDefaults,
-  //           label: 'Processed Positions',
-  //           data: data.processedPositions,
-  //           borderColor: 'white',
-  //         },
-  //         {
-  //           ...datasetDefaults,
-  //           label: 'Original Positions',
-  //           data: data.originalPositions,
-  //         },
-  //       ],
-  //     };
-  //     chart.current.update();
-  //   }
-  // }, [data]);
+  const props = {
+    chartRef: chartElement,
+    label,
+    name,
+  };
 
-  const props = { chartRef: chartElement, dataPoints, setDataPoints };
-
-  return <CurveChartComponent {...props} />;
+  return <ChartSettingComponent {...props} />;
 };
 
-export default CurveChart;
+export default ChartSetting;
