@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Chart } from 'chart.js';
-import { useField, useFormikContext } from 'formik';
+import { useField } from 'formik';
 import ChartSettingComponent from './ChartSetting';
 import endpoints from '../../data/endpoints';
 import { useApi } from '../../hooks';

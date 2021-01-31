@@ -64,18 +64,12 @@ const PositionChart = ({ data }: Props) => {
   useEffect(() => {
     if (data && chart.current) {
       chart.current.data = {
-        labels: data.processedPositions.map((_: any, i: number) => i),
+        labels: data.positions.map((_: any, i: number) => i),
         datasets: [
           {
             ...datasetDefaults,
-            label: 'Processed Positions',
-            data: data.processedPositions,
-            borderColor: 'white',
-          },
-          {
-            ...datasetDefaults,
             label: 'Original Positions',
-            data: data.originalPositions,
+            data: data.positions,
           },
         ],
       };
