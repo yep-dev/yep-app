@@ -22,10 +22,16 @@ const MachineThrustSettingsComponent = () => (
         label="Stroke in tick limit"
         addonAfter="mm"
       />
+      <NumberSetting
+        name="force_limit"
+        label="Max force applied"
+        addonAfter="g"
+      />
       <ChartSetting
         name="stroke_force_chart"
         label="Max stroke for the given force"
-        interval={100}
+        interval={10}
+        margin="0 130px 50px 42px"
       />
     </Section>
     <Section>

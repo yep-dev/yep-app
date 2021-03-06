@@ -26,12 +26,12 @@ const resetSettings = () => axios.post(`${apiUrl}setup/initialize/`);
 const postSettingsCurve = ({
   model,
   id,
-  data,
+  points,
 }: {
   model: string;
   id: number;
-  data: any;
-}) => axios.post(`${apiUrl}curve/`, { data });
+  points: number[];
+}) => axios.post(`${apiUrl}curve/`, { points });
 
 export default {
   postGetWave,

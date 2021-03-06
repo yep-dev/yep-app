@@ -9,9 +9,10 @@ interface ChartSettingProps {
   name: string;
   label: string;
   interval: number;
+  margin: string;
 }
 
-const ChartSetting = ({ name, label, interval }: ChartSettingProps) => {
+const ChartSetting = ({ name, label, interval, margin }: ChartSettingProps) => {
   const chartElement = useRef<HTMLCanvasElement>(null);
   const chart = useRef<any>(null);
   const [field] = useField(name);
@@ -21,14 +22,14 @@ const ChartSetting = ({ name, label, interval }: ChartSettingProps) => {
     postSettingsCurve.callApi({
       model: 'machine-thrust',
       id: 'default',
-      data: field.value,
+      points: field.value,
     });
   }, [field.value]);
 
   useEffect(() => {
     if (postSettingsCurve.data) {
       chart.current.data.datasets[0].data = postSettingsCurve.data;
-      chart.current.data.labels = Array.from({ length: 1000 }, (x, i) => i);
+      chart.current.data.labels = Array.from({ length: 100 }, (x, i) => i);
       chart.current.update();
     }
   }, [postSettingsCurve.data]);
@@ -59,7 +60,7 @@ const ChartSetting = ({ name, label, interval }: ChartSettingProps) => {
           scales: {
             x: {
               min: 0,
-              max: 1000,
+              max: 100,
               ticks: {
                 maxTicksLimit: 10,
                 major: {
@@ -69,12 +70,22 @@ const ChartSetting = ({ name, label, interval }: ChartSettingProps) => {
               gridLines: {
                 color: '#343434',
               },
+              scaleLabel: {
+                display: true,
+                labelString: 'Force (% of force_limit)',
+                color: '#fff',
+              },
             },
             y: {
               min: 0,
               max: 100,
               gridLines: {
                 color: '#343434',
+              },
+              scaleLabel: {
+                display: true,
+                labelString: 'Max stroke per tick (% of tick_stroke_limit)',
+                color: '#fff',
               },
             },
           },
@@ -87,6 +98,7 @@ const ChartSetting = ({ name, label, interval }: ChartSettingProps) => {
     chartRef: chartElement,
     label,
     name,
+    margin
   };
 
   return <ChartSettingComponent {...props} />;

@@ -13,13 +13,14 @@ interface Props {
   chartRef: any;
   label: string;
   name: string;
+  margin: string;
 }
 
-const ChartSettingComponent = ({ label, name, chartRef }: Props) => (
+const ChartSettingComponent = ({ label, name, chartRef, margin }: Props) => (
   <SettingsField label={label} name={name} vertical>
     <Container>
       <canvas ref={chartRef} />
-      <ChartSliders fieldName={name} margin="0 145px 35px 20px" />
+      <ChartSliders fieldName={name} margin={margin} />
     </Container>
   </SettingsField>
 );
