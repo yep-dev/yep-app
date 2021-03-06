@@ -1,16 +1,37 @@
 import React from 'react';
-import { Input } from 'antd';
+import { InputNumber } from 'antd';
 import { FieldInputProps } from 'formik';
+import styled from 'styled-components';
+import cx from 'classnames';
 import SettingsField from '../settingsField';
+
+const StyledInputNumber = styled(InputNumber)`
+  width: 100%;
+`;
 
 interface Props {
   label: string;
-  field: FieldInputProps<string>;
+  field: FieldInputProps<number>;
+  addonAfter: string;
 }
 
-const NumberSettingComponent = ({ label, field, ...inputProps }: Props) => (
+const NumberSettingComponent = ({
+  label,
+  field,
+  addonAfter,
+  ...inputProps
+}: Props) => (
   <SettingsField label={label} name={field.name}>
-    <Input type="number" {...field} {...inputProps} />
+    <div
+      className={cx('ant-input-wrapper', 'ant-input-group', {
+        'addon-after': addonAfter,
+      })}
+    >
+      <StyledInputNumber {...field} {...inputProps} />
+      {addonAfter && (
+        <span className="ant-input-group-addon">{addonAfter}</span>
+      )}
+    </div>
   </SettingsField>
 );
 

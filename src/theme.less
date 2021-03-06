@@ -12,3 +12,13 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.ant-input-group {
+  display: inline-table;
+  &.addon-after {
+    .ant-input-number {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
